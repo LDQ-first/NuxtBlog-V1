@@ -2,7 +2,7 @@
   <div class="admin-publish">
     <input type="text" placeholder="文章标题" v-model="article.title" class="publish-title">
     <div class="publish-content">
-      <top-editor v-model="article.content" :upload="upload" :options="options" @save="save"/>
+      <vue-blogEditor v-model="article.content" :upload="upload" :options="options" @save="save"/>
     </div>
     <div class="publish-handle">
       <input type="text" placeholder="回车可创建新标签" v-model="tag" @keyup.enter="addTag">
