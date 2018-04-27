@@ -1,7 +1,6 @@
 <!-- https://github.com/ktquez/vue-disqus -->
 <template>
   <div id="disqus_thread"></div>
-  </div>
 </template>
 
 <script>
