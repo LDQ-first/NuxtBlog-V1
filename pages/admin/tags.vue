@@ -18,25 +18,23 @@
 <script>
 export default {
   middleware: 'auth',
-  async asyncData({store}) {
-    let data = await store.dispatch('TAGS')
-    if(data.success) {
-      return {
-        tags: data.data
-      }
-    } else {
-      return {
-        tags: []
-      }
-    }
-  },
-  data () {
+  data() {
     return {
       tag:{},
+      tags: [],
       isEdit: false
     }
   },
-
+  mounted() {
+    this.$store.dispatch('TAGS').then((data) => {
+      this.tags = data.data
+    })
+  },
+  head() {
+    return {
+      title: '修改标签 - ' + this.$store.state.user.nickname
+    }
+  },
   methods: {
     delTag(tag) {
        this.$store.dispatch('DELETE_TAG', tag.id).then((data) => {
@@ -49,12 +47,10 @@ export default {
         }
       })
     },
-
     editTag(tag) {
       this.isEdit = true
       this.tag = tag
     },
-
     edit() {
       this.isEdit = false
       this.$store.dispatch('UPDATE_TAG', this.tag).then((data) => {

@@ -15,15 +15,21 @@
 export default {
   async asyncData({store, route}) {
     let page = route.params.id || 1
-    let data = await store.dispatch('ARTICLES', page)
-    if(data.success) {
-      return {
-        articles: data.data,
-        total: data.total
-      }
+    const data  = await store.dispatch('ARTICLES', page)
+    return {
+      articles: data.data || [],
+      total: data.total
     }
   },
 
+  head() {
+    return {
+      title: this.$store.state.user.nickname,
+      meta: [
+        { description: 'VueBlog是一个基于Vuejs开发的小型博客应用，让你可以为所欲为的分享自己的知识和创作' }
+      ]
+    }
+  },
   methods: {
     prevPage() {
       this.$router.push({
@@ -42,14 +48,15 @@ export default {
       })
     }
   },
+
   computed: {
-    maxPage () {
+    maxPage() {
       return Math.ceil(Number(this.total) / 15)
     },
-    page () {
+    page() {
       return Number(this.$route.params.id) || 1
     },
-    hasMore () {
+    hasMore() {
       return this.page < this.maxPage
     }
   }

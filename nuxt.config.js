@@ -1,14 +1,14 @@
 module.exports = {
   head: {
-    title: 'NuxtBlog-V1',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'renderer', content: 'webkit' },
-      { hid: 'description', name: 'description', content: '一个小而美的博客应用' }
+      { name: 'keywords', content: 'VueBlog, Vuejs, Nodejs, 服务端渲染' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'alternate', type: 'application/rss+xml', title: 'RSS 2.0', href: '/rss.xml' },
       { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_620064_9otr4k6uaufbhuxr.css' }
     ]
   },
@@ -16,19 +16,19 @@ module.exports = {
   loading: { color: '#42B983' },
   build: {
     vendor: ['axios'],
-    /*extend (config, ctx) {
+    extend(config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)(server)/
+          exclude: /(node_modules)/
         })
       }
-    }*/
+    }
   },
   manifest: {
-    name: 'NuxtBlog-V1',
+    name: 'VueBlog',
     description: 'A blog system',
     theme_color: '#42B983'
   },
