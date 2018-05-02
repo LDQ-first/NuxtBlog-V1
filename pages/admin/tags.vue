@@ -20,7 +20,7 @@ export default {
   middleware: 'auth',
   data() {
     return {
-      tag:{},
+      tag: {},
       tags: [],
       isEdit: false
     }
@@ -37,13 +37,13 @@ export default {
   },
   methods: {
     delTag(tag) {
-       this.$store.dispatch('DELETE_TAG', tag.id).then((data) => {
+      this.$store.dispatch('DELETE_TAG', tag.id).then((data) => {
         // console.log(data)
-        if(data.success) {
-         this.$refs.tip.openTip('标签删除完成')
-         this.$store.dispatch('TAGS').then((data) => {
-           this.tags = data.data
-         })
+        if (data.success) {
+          this.$refs.tip.openTip('标签删除完成')
+          this.$store.dispatch('TAGS').then((data) => {
+            this.tags = data.data
+          })
         }
       })
     },
@@ -54,11 +54,11 @@ export default {
     edit() {
       this.isEdit = false
       this.$store.dispatch('UPDATE_TAG', this.tag).then((data) => {
-        if(data.success) {
+        if (data.success) {
           this.$refs.tip.openTip('标签更新完成')
           this.$store.dispatch('TAGS').then((data) => {
-           this.tags = data.data
-         })
+            this.tags = data.data
+          })
         }
       })
     }

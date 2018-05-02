@@ -38,53 +38,53 @@ export default {
     return {
       keyword: '',
       navs: [{
-          path: '/',
-          routerName: 'index',
-          name: '首页'
-        },
-        {
-          path: '/tags',
-          routerName: 'tags-id',
-          name: '标签'
-        },
-        {
-          path: '/archives',
-          routerName: 'archives',
-          name: '归档'
-        },
-        {
-          path: '/search',
-          routerName: 'search-id',
-          name: '搜索'
-        }
+        path: '/',
+        routerName: 'index',
+        name: '首页'
+      },
+      {
+        path: '/tags',
+        routerName: 'tags-id',
+        name: '标签'
+      },
+      {
+        path: '/archives',
+        routerName: 'archives',
+        name: '归档'
+      },
+      {
+        path: '/search',
+        routerName: 'search-id',
+        name: '搜索'
+      }
       ],
 
       adminNavs: [{
-          path: '/',
-          routerName: 'index',
-          name: '首页'
-        }, {
-          path: '/admin/private',
-          routerName: 'admin-private',
-          name: '草稿'
-        },
-        {
-          path: '/admin/tags',
-          routerName: 'admin-tags',
-          name: '标签'
-        },
-        {
-          path: '/admin/update',
-          routerName: 'admin-update',
-          name: '修改'
-        }
+        path: '/',
+        routerName: 'index',
+        name: '首页'
+      }, {
+        path: '/admin/private',
+        routerName: 'admin-private',
+        name: '草稿'
+      },
+      {
+        path: '/admin/tags',
+        routerName: 'admin-tags',
+        name: '标签'
+      },
+      {
+        path: '/admin/update',
+        routerName: 'admin-update',
+        name: '修改'
+      }
       ]
     }
   },
   methods: {
     search() {
       if (this.keyword === '') {
-        return
+        return '需要输入内容'
       } else {
         let keyword = encodeURIComponent(this.keyword)
         this.$router.push(`/search/${keyword}`)

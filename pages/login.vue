@@ -10,7 +10,7 @@
 export default {
   data() {
     return {
-      user:{}
+      user: {}
     }
   },
   head() {
@@ -20,11 +20,11 @@ export default {
   },
   methods: {
     login() {
-      if(!this.user.username || !this.user.password) {
+      if (!this.user.username || !this.user.password) {
         return false
       }
       this.$store.dispatch('LOGIN', this.user).then(data => {
-        if(data.success) {
+        if (data.success) {
           this.$router.push('/admin/publish')
         } else {
           this.$refs.tip.openTip('用户名或密码不正确')

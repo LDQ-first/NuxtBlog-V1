@@ -19,6 +19,7 @@ module.exports = {
         named: 'never'
       }
     ],
+    'one-var': 0
   },
   globals: {}
 }

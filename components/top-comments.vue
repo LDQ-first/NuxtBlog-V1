@@ -76,19 +76,19 @@ export default {
       disqusConfig.page.identifier = (this.identifier || this.$route.path || window.location.pathname)
       disqusConfig.page.url = (this.url || this.$el.baseURI)
       if (this.title) {
-        disqusConfig.page.title = this.title;
+        disqusConfig.page.title = this.title
       }
       if (this.remote_auth_s3) {
-        disqusConfig.page.remote_auth_s3 = this.remote_auth_s3;
+        disqusConfig.page.remote_auth_s3 = this.remote_auth_s3
       }
       if (this.api_key) {
-        disqusConfig.page.api_key = this.api_key;
+        disqusConfig.page.api_key = this.api_key
       }
       if (this.sso_config) {
-        disqusConfig.sso = this.sso_config;
+        disqusConfig.sso = this.sso_config
       }
       if (this.language) {
-        disqusConfig.language = this.language;
+        disqusConfig.language = this.language
       }
       disqusConfig.callbacks.onReady = [() => {
         this.$emit('ready')

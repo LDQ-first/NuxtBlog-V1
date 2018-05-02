@@ -33,11 +33,11 @@ export default {
   async asyncData({ store, route, error }) {
     let id = route.params.id || ''
     const { data } = await store.dispatch('ARTICLE_DETAIL', id)
-    if(!id) {
+    if (!id) {
       error({
         message: 'This page could not be found',
         statusCode: 404
-     })
+      })
       return false
     }
     return {
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       options: {},
-      isLogin: this.$store.state.token ? true : false
+      isLogin: this.$store.state.token
     }
   },
 

@@ -122,7 +122,7 @@ export default {
           title: this.article.title,
           content: this.article.content,
           tags: tagsID,
-          publish: isPublish,
+          publish: isPublish
         }
         this.$store.dispatch('UPDATE_ARTICLE', article).then((data) => {
           if (data.success) {
@@ -134,7 +134,7 @@ export default {
           title: this.article.title,
           content: this.article.content,
           tags: tagsID,
-          publish: isPublish,
+          publish: isPublish
         }
         this.$store.dispatch('CREATE_ARTICLE', article).then((data) => {
           if (data.success) {

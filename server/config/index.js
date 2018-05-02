@@ -19,13 +19,14 @@ export default {
     password: ''
   },
   production: {
-    host: '198.13.32.165',
-    domain: ''
-    // domain: 'http://127.0.0.1:3000'
+    host: '',
+    // host: '198.13.32.165',
+    // domain: ''
+    domain: 'http://127.0.0.1:3001'
   },
   app: {
     host: '127.0.0.1',
     port: 3001,
-    routerBaseApi: '/api'
+    routerBaseApi: 'api'
   }
 }

@@ -32,7 +32,7 @@ export default {
   methods: {
     del(id) {
       this.$store.dispatch('DELETE_ARTICLE', id).then((data) => {
-        if(data.success) {
+        if (data.success) {
           this.$refs.tip.openTip('草稿删除完成')
           this.$store.dispatch('PRIVATE_ARTICLES').then((data) => {
             this.articles = data.data
