@@ -4,7 +4,7 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'renderer', content: 'webkit' },
-      { name: 'keywords', content: 'VueBlog, Vuejs, Nodejs, 服务端渲染' }
+      { name: 'keywords', content: 'NuxtBlog-V1, Vuejs, Nodejs, 服务端渲染' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -28,7 +28,7 @@ module.exports = {
     }
   },
   manifest: {
-    name: 'VueBlog',
+    name: 'NuxtBlog-V1',
     description: 'A blog system',
     theme_color: '#42B983'
   },

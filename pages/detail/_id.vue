@@ -22,7 +22,7 @@
       <p class="admin-edit"><a @click="edit(article.id)">编辑</a></p>
     </div>
     <no-ssr>
-      <top-comments shortname="vueblog-1" :identifier="article.id"/>
+      <top-comments shortname="NuxtBlog-V1" :identifier="article.id"/>
     </no-ssr>
     <top-tip ref="tip" />
   </div>
