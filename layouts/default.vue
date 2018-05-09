@@ -1,6 +1,6 @@
 <template>
   <div class="blog">
-    <aside class="blog-cover" ref="blogCover">
+    <aside class="blog-cover" ref="blogCover" v-show="isShowCover">
       <div class="blog-profile">
         <div class="blog-avatar"  @click="showMain">
           <img src="../static/avatar.jpg" class="avatar" alt="">
@@ -64,7 +64,11 @@ export default {
       }, {
         icon: '../static/nuxt.png',
         link: 'https://nuxtjs.org/'
+      }, {
+        icon: '../static/rss.svg',
+        link: `/rss.xml`
       }],
+      isShowCover: this.$route.path === '/',
       keyword: '',
       navs: [{
         path: '/',
