@@ -1,41 +1,70 @@
 <template>
   <div class="blog">
-    <div class="header-wraper">
-      <header class="blog-header">
-        <h1 class="header-title"><a href="/">{{ $store.state.user.nickname }}</a></h1>
-        <nav class="header-nav">
-          <!-- admin navs -->
-          <ul class="nav-list" v-if="/^(admin)/.test($route.name)">
-            <li v-for="(nav, index) in adminNavs" :key="index" :class="{'nav-active': nav.routerName === $route.name}">
-              <nuxt-link :to="nav.path">{{ nav.name }}</nuxt-link>
-            </li>
-            <li><a @click="logout">退出</a></li>
-          </ul>
-          <!-- front navs -->
-          <ul class="nav-list" v-else>
-            <li v-for="(nav, index) in navs" :key="index" :class="{'nav-active': nav.routerName === $route.name}">
-              <nuxt-link :to="nav.path">{{ nav.name }}</nuxt-link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </div>
-    <section class="blog-body">
-      <nuxt/>
-    </section>
-    <aside class="blog-aside">
-      <a href="#" class="aside-backtop"><i class="iconfont icon-backtop"></i></a>
-      <a href="/admin/publish" class="aside-new"><i class="iconfont icon-logs"></i></a>
+    <aside class="blog-cover" ref="blogCover">
+      <div class="blog-profile">
+        <div class="blog-avatar"  @click="showMain">
+          <img src="../static/avatar.jpg" class="avatar" alt="">
+        </div>
+        <h1 class="profile-title">NuxtBlog-V1</h1>
+        <p class="profile-des">记录美好生活</p>
+        <ul class="profile-links clearfix">
+          <li v-for="(link, index) in links" :key="index" class="profile-link">
+            <a :href="link.link" target="_blank"><img :src="link.icon" alt="" class="profile-link-img"></a>
+          </li>
+        </ul>
+        <span class="show-main"  @click="showMain">
+          <i class="iconfont icon-backtop"></i>
+        </span>
+      </div>
     </aside>
-    <footer class="blog-footer">
-      <p>Powered by <a href="https://github.com/LDQ-first/NuxtBlog-V1" target="_blank">NuxtBlog-V1</a>.</p>
-    </footer>
+    <div class="blog-main">
+      <div class="header-wraper">
+        <header class="blog-header">
+          <h1 class="header-title"><a href="/">{{ $store.state.user.nickname }}</a></h1>
+          <nav class="header-nav">
+            <!-- admin navs -->
+            <ul class="nav-list" v-if="/^(admin)/.test($route.name)">
+              <li v-for="(nav, index) in adminNavs" :key="index" :class="{'nav-active': nav.routerName === $route.name}">
+                <nuxt-link :to="nav.path">{{ nav.name }}</nuxt-link>
+              </li>
+              <li><a @click="logout">退出</a></li>
+            </ul>
+            <!-- front navs -->
+            <ul class="nav-list" v-else>
+              <li v-for="(nav, index) in navs" :key="index" :class="{'nav-active': nav.routerName === $route.name}">
+                <nuxt-link :to="nav.path">{{ nav.name }}</nuxt-link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+      </div>
+      <section class="blog-body">
+        <nuxt/>
+      </section>
+      <aside class="blog-aside">
+        <a href="#" class="aside-backtop"><i class="iconfont icon-backtop"></i></a>
+        <a href="/admin/publish" class="aside-new"><i class="iconfont icon-logs"></i></a>
+      </aside>
+      <footer class="blog-footer">
+        <p>Powered by <a href="https://github.com/LDQ-first/NuxtBlog-V1" target="_blank">NuxtBlog-V1</a>.</p>
+      </footer>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      links: [{
+        icon: '../static/github.svg',
+        link: 'https://github.com/LDQ-first/NuxtBlog-V1'
+      }, {
+        icon: '../static/vue.svg',
+        link: 'https://cn.vuejs.org/'
+      }, {
+        icon: '../static/nuxt.png',
+        link: 'https://nuxtjs.org/'
+      }],
       keyword: '',
       navs: [{
         path: '/',
@@ -97,6 +126,10 @@ export default {
           this.$router.push('/')
         }
       })
+    },
+    showMain() {
+      console.log(this.$refs.blogCover)
+      this.$refs.blogCover.classList.add('hidden')
     }
   }
 }
@@ -104,9 +137,121 @@ export default {
 </script>
 <style lang="scss">
 @import '~/assets/css/var.scss';
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh);
+  }
+}
+
+
+@keyframes shakeIcon {
+    0% {
+        transform: scaleX(1)
+    }
+
+    30% {
+        transform: scale3d(1.25,.75,1)
+    }
+
+    40% {
+        transform: scale3d(.75,1.25,1)
+    }
+
+    50% {
+        transform: scale3d(1.15,.85,1)
+    }
+
+    65% {
+        transform: scale3d(.95,1.05,1)
+    }
+
+    75% {
+        transform: scale3d(1.05,.95,1)
+    }
+
+    to {
+        transform: scaleX(1)
+    }
+}
+
+
 .blog {
   position: relative;
   min-width: 320px;
+  .blog-cover {
+    background: #2C61A5 url('../static/bg.jpg') center/cover no-repeat;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    &.hidden {
+      animation: hide 1s ease-in-out forwards;
+    }
+    .blog-profile {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .blog-avatar {
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0 3px 6px rgba(0,0,0,.16),
+                    0 3px 6px rgba(0,0,0,.23);
+        overflow: hidden;
+        margin-bottom: 10px;
+        &:hover {
+          animation: shakeIcon 1s ease-in;
+        }
+        .avatar {
+          width: 128px;
+          height: 128px;
+        }
+
+      }
+      .profile-title {
+        margin-bottom: 10px;
+      }
+      .profile-des {
+         margin-bottom: 10px;
+      }
+      .profile-links {
+        .profile-link {
+          float: left;
+          margin: 0 20px;
+          .profile-link-img {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
+      .show-main {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        background: #FFF;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+      }
+    }
+  }
+  .blog-main {
+    min-height: 100vh;
+  }
   .header-wraper {
     width: 100%;
     border-bottom: 1px solid #eee;
