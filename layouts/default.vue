@@ -263,7 +263,7 @@ export default {
   }
   .blog-main {
     min-height: 100vh;
-    background: linear-gradient(to left, rgba(97, 144, 232, 0.1), rgba(167, 191, 232, 0.1));
+    background: linear-gradient(to left, rgba(97, 144, 232, 0.3), rgba(167, 191, 232, 0.2));
   }
   .header-wraper {
     width: 100%;
