@@ -208,7 +208,8 @@ export default {
         position: relative;
         display: inline-block;
         font-size: 14px;
-        background-color: #eee;
+        color: $tag-color;
+        background-color: $tag-bg;
         margin-right: 15px;
         padding-left: 8px;
         padding-right: 8px;
@@ -229,6 +230,7 @@ export default {
       flex: 1;
       a {
         margin-right: 15px;
+        color: $tag-color;
       }
     }
   }

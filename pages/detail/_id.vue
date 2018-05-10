@@ -3,8 +3,8 @@
     <h1 class="detail-title">{{ article.title }}</h1>
     <div class="detail-meta">
       <span>
-        {{ article.createdAt | formatDate('yyyy-MM-dd') }}
-        <span class="meta-division">/</span> {{ article.updatedAt | formatDate('yyyy-MM-dd') }}
+        创建于 {{ article.createdAt | formatDate('yyyy-MM-dd') }}
+        <span class="meta-division">/</span> 更新于 {{ article.updatedAt | formatDate('yyyy-MM-dd') }}
       <span class="meta-division">/</span> {{ article.views }}次浏览
       </span>
     </div>
@@ -12,6 +12,7 @@
       <top-preview :content="article.content" :options="options"></top-preview>
     </div>
     <p class="detail-tags">
+      标签：
       <nuxt-link v-for="(tag, index) in article.tags" :key="index" :to="'/tags/' + tag.id">{{ tag.name }}</nuxt-link>
     </p>
     <div class="detail-copyright">
@@ -112,9 +113,9 @@ export default {
     margin-top: 30px;
     a {
       font-size: 14px;
-      color: #666;
+      color: $tag-color;
       padding: 3px 10px;
-      background-color: #eee;
+      background-color: $tag-bg;
       border-radius: 3px;
       margin-right: 15px;
       &:hover {

@@ -39,9 +39,9 @@ export default {
     margin-right: 10px;
     margin-bottom: 10px;
     a {
-      color: #666;
+      color: $tag-color;
       padding: 3px 10px;
-      background-color: #eee;
+      background-color: $tag-bg;
       border-radius: 3px;
       &:hover {
         background-color: darken(#eee, 5%);
