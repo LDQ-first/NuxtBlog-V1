@@ -47,6 +47,7 @@ $font-color: #24292e;
                 rgba(0, 0, 0, 0.12) 0px 1px 4px;
     border-radius: 6px;
     overflow: hidden;
+    background: #fafafa;
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 30px,
                   rgba(0, 0, 0, 0.23) 0px 6px 10px;

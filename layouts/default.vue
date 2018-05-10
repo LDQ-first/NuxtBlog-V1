@@ -37,6 +37,15 @@
             </ul>
           </nav>
         </header>
+        <div class="header-profile">
+            <h1 class="header-title">NuxtBlog-V1</h1>
+            <p class="header-des">记录美好生活</p>
+            <ul class="header-links clearfix">
+              <li v-for="(link, index) in links" :key="index" class="header-link">
+                <a :href="link.link" target="_blank"><img :src="link.icon" alt="" class="header-link-img"></a>
+              </li>
+            </ul>
+          </div>
       </div>
       <section class="blog-body">
         <nuxt/>
@@ -211,7 +220,7 @@ export default {
         box-shadow: 0 3px 6px rgba(0,0,0,.16),
                     0 3px 6px rgba(0,0,0,.23);
         overflow: hidden;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         &:hover {
           animation: shakeIcon 1s ease-in;
         }
@@ -219,13 +228,12 @@ export default {
           width: 128px;
           height: 128px;
         }
-
       }
       .profile-title {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
       .profile-des {
-         margin-bottom: 10px;
+         margin-bottom: 20px;
       }
       .profile-links {
         .profile-link {
@@ -255,15 +263,57 @@ export default {
   }
   .blog-main {
     min-height: 100vh;
+    background: linear-gradient(to left, rgba(97, 144, 232, 0.1), rgba(167, 191, 232, 0.1));
   }
   .header-wraper {
     width: 100%;
     border-bottom: 1px solid #eee;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('../static/header.jpg') center/cover no-repeat;
+    height: 400px;
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(167, 191, 232, .2);
+      z-index: 0;
+    }
+    .header-profile {
+      position: relative;
+      z-index: 10;
+      color: #FFF;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .header-title {
+        margin-bottom: 10px;
+      }
+      .header-des {
+         margin-bottom: 20px;
+      }
+      .header-links {
+        .header-link {
+          float: left;
+          margin: 0 20px;
+          .header-link-img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
   }
   .blog-header {
-    width: 960px;
-    margin: auto;
+    position: relative;
+    z-index: 10;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 16px;
@@ -275,7 +325,7 @@ export default {
       a:visited,
       a:hover,
       a:active {
-        color: $font-color;
+        color: $header-color;
       }
     }
     .header-nav {
@@ -285,7 +335,7 @@ export default {
       li {
         display: inline-block;
         a {
-          color: $font-color;
+          color: $header-color;
           padding: 0 12px;
           @media (max-width:370px) {
             padding: 0 6px;
@@ -303,12 +353,17 @@ export default {
   .blog-body {
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 100px;
+    min-height: 50vh;
   }
   .blog-aside {
     position: fixed;
     right: 50px;
     bottom: 50px;
     z-index: 999;
+    @media (max-width: 700px) {
+      right: 20px;
+    }
     .aside-new,
     .aside-backtop {
       display: block;
