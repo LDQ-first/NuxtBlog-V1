@@ -8,6 +8,13 @@
             <h2 class="article-title">
               {{ article.title }}
             </h2>
+            <div class="detail-meta">
+              <span>
+                创建于 {{ article.createdAt | formatDate('yyyy-MM-dd') }}
+                <span class="meta-division">/</span> 更新于 {{ article.updatedAt | formatDate('yyyy-MM-dd') }}
+              <span class="meta-division">/</span> {{ article.views }}次浏览
+              </span>
+            </div>
             <p class="article-body">{{ article.content | cutString(170) }}</p>
           </div>
         </nuxt-link>
@@ -61,10 +68,19 @@ $font-color: #24292e;
     }
     .main {
       padding: 20px;
+      .detail-meta {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 30px;
+        .meta-division {
+          margin: 0 7px;
+        }
+      }
     }
     .article-title {
       font-size: 20px;
       font-weight: normal;
+      margin-bottom: 15px;
       a {
         color: $font-color;
         &:hover {
