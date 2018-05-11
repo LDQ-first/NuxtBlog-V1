@@ -9,8 +9,12 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'alternate', type: 'application/rss+xml', title: 'RSS 2.0', href: '/rss.xml' },
-      { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_620064_9otr4k6uaufbhuxr.css' }
-    ]
+      { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_620064_9otr4k6uaufbhuxr.css' }/* ,
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css' } */
+    ]/* ,
+    script: [
+      { src: 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js' }
+    ] */
   },
   css: ['~assets/css/main.css', 'highlight.js/styles/github.css'],
   loading: { color: '#42B983' },
@@ -33,5 +37,7 @@ module.exports = {
     theme_color: '#42B983'
   },
   modules: ['@nuxtjs/pwa', '@nuxtjs/axios'],
-  plugins: ['~/plugins/components.js', '~/plugins/filters.js']
+  plugins: ['~/plugins/components.js', '~/plugins/filters.js', 
+    { '~/plugins/gitalk.js', ssr: false }
+  ]
 }

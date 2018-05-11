@@ -1,8 +1,12 @@
 <template>
-  <div id="disqus_thread"></div>
+  <div>
+    <!-- <div id="disqus_thread"></div> -->
+    <div id="gitalk-container"></div>
+  </div>
 </template>
 
 <script>
+
 export default {
   name: 'top-comments',
   props: {
@@ -57,7 +61,19 @@ export default {
       })
     },
     init() {
-      const self = this
+      const gitalk = new window.Gitalk({
+        clientID: 'f813284c827aea0d5b65',
+        clientSecret: 'a8971cd7ed66472debd00cd753a8db8bbd6cefc4',
+        repo: 'NuxtBlog-V1',
+        owner: 'LDQ-first',
+        admin: ['LDQ-first'],
+        id: window.location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+     /*  const self = this
       window.disqus_config = function () {
         self.setBaseConfig(this)
       }
@@ -70,8 +86,8 @@ export default {
         s.async = true
         s.src = `//${this.shortname}.disqus.com/embed.js`;
         (d.head || d.body).appendChild(s)
-      }, 0)
-    },
+      }, 0) */
+    }/* ,
     setBaseConfig(disqusConfig) {
       disqusConfig.page.identifier = (this.identifier || this.$route.path || window.location.pathname)
       disqusConfig.page.url = (this.url || this.$el.baseURI)
@@ -93,7 +109,7 @@ export default {
       disqusConfig.callbacks.onReady = [() => {
         this.$emit('ready')
       }]
-    }
+    } */
   }
 }
 
