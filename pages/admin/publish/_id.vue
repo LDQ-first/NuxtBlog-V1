@@ -127,6 +127,9 @@ export default {
         this.$store.dispatch('UPDATE_ARTICLE', article).then((data) => {
           if (data.success) {
             this.$refs.tip.openTip('文章更新完成')
+            this.$router.push({
+              path: `/detail/${data.data.id}`
+            })
           }
         })
       } else {
@@ -142,6 +145,9 @@ export default {
             this.article.title = ''
             this.article.content = ''
             this.article.tags = []
+            this.$router.push({
+              path: `/detail/${data.data.id}`
+            })
           }
         })
       }
