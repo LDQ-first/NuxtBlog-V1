@@ -238,7 +238,7 @@ export default {
       .profile-links {
         .profile-link {
           float: left;
-          margin: 0 20px;
+          margin: 0 15px;
           .profile-link-img {
             width: 50px;
             height: 50px;
