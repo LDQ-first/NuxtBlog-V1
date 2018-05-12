@@ -1,5 +1,5 @@
 <template>
-  <div class="blog">
+  <div class="blog" :class="{ noScroll: isShowCover }">
     <aside class="blog-cover" ref="blogCover" v-show="isShowCover">
       <div class="blog-profile">
         <div class="blog-avatar"  @click="showMain">
@@ -18,8 +18,8 @@
       </div>
     </aside>
     <div class="blog-main">
-      <div class="header-wraper">
-        <header class="blog-header">
+      <div class="header-wraper" ref="blogHeaderWraper">
+        <header class="blog-header" ref="blogHeader">
           <h1 class="header-title"><a href="/">{{ $store.state.user.nickname }}</a></h1>
           <nav class="header-nav">
             <!-- admin navs -->
@@ -38,7 +38,7 @@
           </nav>
         </header>
         <div class="header-profile">
-            <h1 class="header-title">NuxtBlog-V1</h1>
+            <h1 class="header-title" ref="blogHeaderTitle">NuxtBlog-V1</h1>
             <p class="header-des">记录美好生活</p>
             <ul class="header-links clearfix">
               <li v-for="(link, index) in links" :key="index" class="header-link">
@@ -123,6 +123,15 @@ export default {
       ]
     }
   },
+  mounted() {
+    window.addEventListener('scroll', (e) => {
+      if (this.$refs.blogHeaderTitle && window.scrollY > this.$refs.blogHeaderTitle.offsetTop) {
+        this.$refs.blogHeader.classList.add('bg')
+      } else {
+        this.$refs.blogHeader.classList.remove('bg')
+      }
+    })
+  },
   methods: {
     search() {
       if (this.keyword === '') {
@@ -141,8 +150,11 @@ export default {
       })
     },
     showMain() {
-      console.log(this.$refs.blogCover)
       this.$refs.blogCover.classList.add('hidden')
+      const timer = setTimeout(() => {
+        this.isShowCover = false
+        clearTimeout(timer)
+      }, 1000)
     }
   }
 }
@@ -193,10 +205,13 @@ export default {
     }
 }
 
-
 .blog {
   position: relative;
   min-width: 320px;
+  &.noScroll {
+    height: 100vh;
+    overflow: hidden;
+  }
   .blog-cover {
     background: #2C61A5 url('../static/bg.jpg') center/cover no-repeat;
     height: 100vh;
@@ -311,13 +326,16 @@ export default {
     }
   }
   .blog-header {
-    position: relative;
-    z-index: 10;
+    position: fixed;
+    z-index: 100;
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 16px;
     line-height: 50px;
+    &.bg {
+      background: rgba(0, 145, 237, 1);
+    }
     .header-title {
       font-size: 18px;
       font-weight: 600;
@@ -346,6 +364,7 @@ export default {
         }
         &.nav-active a {
           color: $link-color;
+          font-weight: bold;
         }
       }
     }
@@ -361,7 +380,7 @@ export default {
     right: 50px;
     bottom: 50px;
     z-index: 999;
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
       right: 20px;
     }
     .aside-new,
