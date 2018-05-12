@@ -130,13 +130,13 @@ export default {
   },
 
   async LOGIN({ commit, state, getters }, user) {
-    const { data } = await axios.post(`${getters.routerBaseApi}/login`, user)
+    const { data } = await axios.post(`/${getters.routerBaseApi}/login`, user)
     commit('SET_TOKEN', data.data.token)
     return data
   },
 
   async LOGOUT({ commit, state, getters }) {
-    const { data } = await axios.post(`${getters.routerBaseApi}/logout`, {}, {
+    const { data } = await axios.post(`/${getters.routerBaseApi}/logout`, {}, {
       headers: {
         token: state.token
       }
