@@ -329,12 +329,19 @@ export default {
     position: fixed;
     z-index: 100;
     width: 100%;
+    min-width: 320px;
     display: flex;
     justify-content: space-between;
     padding: 0 16px;
     line-height: 50px;
     &.bg {
-      background: rgba(0, 145, 237, 1);
+      background: rgb(0, 144, 234);
+    }
+    @media (max-width:420px) {
+      padding: 0 12px;
+    }
+    @media (max-width:370px) {
+      padding: 0 8px;
     }
     .header-title {
       font-size: 18px;
@@ -354,9 +361,15 @@ export default {
         display: inline-block;
         a {
           color: $header-color;
-          padding: 0 12px;
-          @media (max-width:370px) {
+          padding: 0 15px;
+          @media (max-width:500px) {
+            padding: 0 10px;
+          }
+          @media (max-width:420px) {
             padding: 0 6px;
+          }
+          @media (max-width:340px) {
+            padding: 0 2px;
           }
           &:hover {
             color: $link-color;
@@ -372,7 +385,7 @@ export default {
   .blog-body {
     padding-left: 15px;
     padding-right: 15px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     min-height: 50vh;
   }
   .blog-aside {

@@ -180,8 +180,9 @@ export default {
       flex: 1;
     }
     .handle-button {
-      width: 400px;
+      max-width: 400px;
       text-align: right;
+      margin-left: 20px;
       button {
         border: none;
         line-height: 38px;
@@ -223,6 +224,15 @@ export default {
         span {
           cursor: pointer;
         }
+      }
+    }
+     @media (max-width: 440px) {
+      flex-direction: column;
+      input {
+        margin-bottom: 20px;
+      }
+      .handle-tag {
+        top: -34%;
       }
     }
   }
