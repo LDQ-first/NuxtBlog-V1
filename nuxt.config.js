@@ -38,6 +38,6 @@ module.exports = {
   },
   modules: ['@nuxtjs/pwa', '@nuxtjs/axios'],
   plugins: ['~/plugins/components.js', '~/plugins/filters.js', 
-    { '~/plugins/gitalk.js', ssr: false }
+    { src: '~/plugins/gitalk.js', ssr: false }
   ]
 }
