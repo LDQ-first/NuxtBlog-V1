@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     randomBg() {
-      let num = parseInt(Math.random() * 6)
+      let num = parseInt(Math.random() * 16)
       return `background: url(../static/lists/${num || 1}.jpg) center/cover no-repeat`
     }
   }

@@ -1,10 +1,11 @@
 <template>
   <div class="admin-tags">
+    <p v-if="tags" class="count">共有 {{tags.length}} 个标签</p>
     <div class="tags-input" v-if="isEdit">
       <input type="text" @keyup.enter="edit" v-model="tag.name">
       <button class="black-button" @click="edit">确认修改</button>
     </div>
-    <ul class="tags-list">
+    <ul class="tags-list" v-if="tags && tags.length">
       <li class="list-item" v-for="(tag, index) in tags" :key="index">
         <p class="item-title"><nuxt-link :to="'/tags/'+tag.id">{{tag.name}}</nuxt-link></p>
         <p class="item-date">{{tag.updatedAt | formatDate('yyyy-MM-dd')}}</p>
@@ -72,6 +73,9 @@ export default {
 .admin-tags {
   max-width: 960px;
   margin: 60px auto;
+  .count {
+    margin: 50px 0;
+  }
   .tags-input {
     text-align: center;
     input {

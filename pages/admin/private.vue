@@ -1,6 +1,7 @@
 <template>
   <div class="admin-private">
-    <ul class="private-list">
+    <p v-if="articles" class="count">共有 {{articles.length}} 篇草稿</p>
+    <ul class="private-list" v-if="articles && articles.length">
       <li class="list-item" v-for="(article, index) in articles" :key="index">
         <p class="item-title"><nuxt-link :to="'/detail/'+article.id">{{article.title}}</nuxt-link></p>
         <p class="item-date">{{article.updatedAt | formatDate('yyyy-MM-dd')}}</p>
@@ -53,6 +54,9 @@ export default {
 .admin-private {
   max-width: 960px;
   margin: 60px auto;
+  .count {
+    margin: 50px 0;
+  }
   .list-item {
     display: flex;
     line-height: 45px;
