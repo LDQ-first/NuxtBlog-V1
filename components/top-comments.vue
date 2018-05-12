@@ -61,6 +61,7 @@ export default {
       })
     },
     init() {
+      console.log('window.Gitalk: ', window.Gitalk)
       const gitalk = new window.Gitalk({
         clientID: 'f813284c827aea0d5b65',
         clientSecret: 'a8971cd7ed66472debd00cd753a8db8bbd6cefc4',

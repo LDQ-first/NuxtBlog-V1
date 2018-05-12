@@ -37,7 +37,7 @@ module.exports = {
     theme_color: '#42B983'
   },
   modules: ['@nuxtjs/pwa', '@nuxtjs/axios'],
-  plugins: ['~/plugins/components.js', '~/plugins/filters.js', 
+  plugins: ['~/plugins/components.js', '~/plugins/filters.js',
     { src: '~/plugins/gitalk.js', ssr: false }
   ]
 }
