@@ -5,7 +5,7 @@ const User = mongoose.model('User')
 
 export default async(ctx, next) => {
   const token = ctx.get('token')
-  console.log('token: ', token)
+  // console.log('token: ', token)
   if (token) {
     const decoded = jwt.verify(token, config.jwt.secret)
     const username = decoded.username
