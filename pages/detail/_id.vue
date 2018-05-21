@@ -12,7 +12,7 @@
       <top-preview :content="article.content" :options="options"></top-preview>
     </div>
     <p class="detail-tags">
-      标签：
+      <span v-if="article && article.tags && article.tags.length">标签：</span>
       <nuxt-link v-for="(tag, index) in article.tags" :key="index" :to="'/tags/' + tag.id">{{ tag.name }}</nuxt-link>
     </p>
     <div class="detail-copyright">

@@ -65,7 +65,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 26);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -78,7 +78,7 @@ module.exports = require("mongoose");
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(25);
+module.exports = __webpack_require__(29);
 
 
 /***/ },
@@ -91,30 +91,31 @@ module.exports = __webpack_require__(25);
     role: 'superAdmin',
     username: 'q',
     password: 'q',
-    email: 'qq22337383@gmail.com',
-    nickname: 'VueBlog',
+    email: '178848890@qq.com',
+    nickname: 'NuxtBlog-V1',
     motto: 'Never too old to learn',
     avatar: 'avatar.png'
   },
   jwt: {
-    secret: 'vueblog'
+    secret: 'NuxtBlog-V1'
   },
   mongodb: {
     host: '127.0.0.1',
-    database: 'vueblog',
+    database: 'NuxtBlog-V1',
     port: 27017,
     username: '',
     password: ''
   },
   production: {
-    host: '198.13.32.165',
-    domain: 'https://www.86886.wang'
-    // domain: 'http://127.0.0.1:3000'
+    host: '',
+    // host: '198.13.32.165',
+    // domain: ''
+    domain: 'http://127.0.0.1:3001'
   },
   app: {
     host: '127.0.0.1',
-    port: 3000,
-    routerBaseApi: '/api'
+    port: 3001,
+    routerBaseApi: 'api'
   }
 };
 
@@ -128,132 +129,231 @@ module.exports = require("koa-router");
 /* 4 */
 /***/ function(module, exports) {
 
-module.exports = require("path");
+module.exports = require("jsonwebtoken");
 
 /***/ },
 /* 5 */
 /***/ function(module, exports) {
 
-module.exports = require("jsonwebtoken");
+module.exports = require("md5");
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-module.exports = require("md5");
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
 module.exports = {
   head: {
-    title: 'VueBlog',
-    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { name: 'renderer', content: 'webkit' }, { hid: 'description', name: 'description', content: '一个小而美的博客应用' }],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_620064_9otr4k6uaufbhuxr.css' }]
+    meta: [{ charset: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, { name: 'renderer', content: 'webkit' }, { name: 'keywords', content: 'NuxtBlog-V1, Vuejs, Nodejs, 服务端渲染' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, { rel: 'alternate', type: 'application/rss+xml', title: 'RSS 2.0', href: '/rss.xml' }, { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_620064_9otr4k6uaufbhuxr.css' /* ,
+                                                                                                                                                                                                                                                                 { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css' } */
+    }] /* ,
+       script: [
+        { src: 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js' }
+       ] */
   },
   css: ['~assets/css/main.css', 'highlight.js/styles/github.css'],
   loading: { color: '#42B983' },
   build: {
-    vendor: ['axios']
-    /*extend (config, ctx) {
+    vendor: ['axios'],
+    extend: function extend(config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)(server)/
-        })
+          exclude: /(node_modules)/
+        });
       }
-    }*/
+    }
   },
   manifest: {
-    name: 'VueBlog',
+    name: 'NuxtBlog-V1',
     description: 'A blog system',
     theme_color: '#42B983'
   },
   modules: ['@nuxtjs/pwa', '@nuxtjs/axios'],
-  plugins: ['~/plugins/components.js', '~/plugins/filters.js']
+  plugins: ['~/plugins/components.js', '~/plugins/filters.js', { src: '~/plugins/gitalk.js', ssr: false }]
 };
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_koa_router__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_koa_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rss__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__rss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__sitemap__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__sitemap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__sitemap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__robots__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__robots___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__robots__);
+
+
+var _this = this;
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 
 
 
 
-var router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a({
-  prefix: __WEBPACK_IMPORTED_MODULE_1__config__["a" /* default */].app.routerBaseApi
+
+
+
+
+
+var router = new __WEBPACK_IMPORTED_MODULE_2_koa_router___default.a();
+var user = __webpack_require__(15);
+var tag = __webpack_require__(14);
+var article = __webpack_require__(13);
+
+// rss
+var rss = '';
+var baseUrl = 'http://' + __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */].app.host + ':' + __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */].app.port;
+if (true) {
+  baseUrl = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */].production.domain;
+}
+var articleApi = baseUrl + '/' + __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */].app.routerBaseApi + '/articles';
+router.get('/rss.xml', function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(articleApi).then(function (ret) {
+              var data = ret.data;
+
+              rss = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__rss__["getRssBodyFromBody"])(data, {
+                title: 'NuxtBlog-V1',
+                siteUrl: baseUrl,
+                description: 'NuxtBlog-V1'
+              });
+            });
+
+          case 2:
+            ctx.type = 'application/xml';
+            ctx.res.end(rss);
+
+          case 4:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, _this);
+  }));
+
+  return function (_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}());
+
+// sitemap
+var sitemap = '';
+router.get('/sitemap.xml', function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(articleApi).then(function (ret) {
+              var data = ret.data;
+
+              sitemap = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__sitemap__["getSitemapFromBody"])(data, {
+                siteUrl: baseUrl
+              });
+            });
+
+          case 2:
+            ctx.type = 'application/xml';
+            ctx.res.end(sitemap);
+
+          case 4:
+          case 'end':
+            return _context2.stop();
+        }
+      }
+    }, _callee2, _this);
+  }));
+
+  return function (_x3, _x4) {
+    return _ref2.apply(this, arguments);
+  };
+}());
+
+// robots
+var robots = '';
+router.get('/robots.txt', function (ctx, next) {
+  robots = __WEBPACK_IMPORTED_MODULE_8__robots___default()({
+    siteUrl: baseUrl
+  });
+  ctx.res.end(robots);
 });
 
-var user = __webpack_require__(16);
-var tag = __webpack_require__(15);
-var article = __webpack_require__(14);
+router.get('/api/user', user.getUserInfo).patch('/api/user', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], user.patchUserInfo).post('/api/login', user.login).post('/api/logout', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], user.logout);
 
-router.get('/user', user.getUserInfo).patch('/user', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], user.patchUserInfo).post('/login', user.login).post('/logout', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], user.logout);
+router.get('/api/tags/:id?', tag.getTagsOrArticles).post('/api/tag', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], tag.postTag).patch('/api/tag', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], tag.patchTag).del('/api/tag/:id?', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], tag.deleteTag);
 
-router.get('/tags/:id?', tag.getTagsOrArticles).post('/tag', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], tag.postTag).patch('/tag', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], tag.patchTag).del('/tag/:id?', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], tag.deleteTag);
-
-router.get('/search/:keyword?', article.search).get('/article/:id?', article.getArticle).get('/articles/:page?/:limit?', article.getArticles).get('/private-articles', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], article.getPrivateArticles).get('/archives', article.archives).post('/article', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], article.postArticle).post('/upload', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], article.upload).patch('/article', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], article.patchArticle).del('/article/:id?', __WEBPACK_IMPORTED_MODULE_3__middlewares_check_token__["a" /* default */], article.deleteArticle);
+router.get('/api/search/:keyword?', article.search).get('/api/article/:id?', article.getArticle).get('/api/articles/:page?/:limit?', article.getArticles).get('/api/private-articles', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], article.getPrivateArticles).get('/api/archives', article.archives).post('/api/article', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], article.postArticle).post('/api/upload', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], article.upload).patch('/api/article', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], article.patchArticle).del('/api/article/:id?', __WEBPACK_IMPORTED_MODULE_5__middlewares_check_token__["a" /* default */], article.deleteArticle);
 
 /* harmony default export */ exports["a"] = router;
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
 module.exports = require("@koa/cors");
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports) {
 
 module.exports = require("koa");
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports) {
 
 module.exports = require("koa-bodyparser");
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports) {
 
 module.exports = require("koa-static");
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports) {
 
 module.exports = require("nuxt");
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mongoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_os__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_os__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_os___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_os__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_fs__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_fs__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_formidable__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_formidable__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_formidable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_formidable__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "getArticles", function() { return getArticles; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "getPrivateArticles", function() { return getPrivateArticles; });
@@ -278,10 +378,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var Article = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('Article');
 
 var getArticles = function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
     var _ctx$params, _ctx$params$page, page, _ctx$params$limit, limit, total, data;
 
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -339,9 +439,9 @@ var getArticles = function () {
 }();
 
 var getPrivateArticles = function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
     var data;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -373,9 +473,9 @@ var getPrivateArticles = function () {
 }();
 
 var getArticle = function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(ctx, next) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(ctx, next) {
     var id, article;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -436,10 +536,10 @@ var getArticle = function () {
 }();
 
 var postArticle = function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(ctx, next) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(ctx, next) {
     var body, _body, title, content, publish;
 
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -500,10 +600,10 @@ var postArticle = function () {
 
 // modify publish article or private article
 var patchArticle = function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(ctx, next) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee5(ctx, next) {
     var body, _body2, id, title, content, publish;
 
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
@@ -560,9 +660,9 @@ var patchArticle = function () {
 }();
 
 var deleteArticle = function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee6(ctx, next) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee6(ctx, next) {
     var id, body;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
@@ -616,9 +716,9 @@ var deleteArticle = function () {
 }();
 
 var search = function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee7(ctx, next) {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee7(ctx, next) {
     var keyword, reg, body;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
@@ -664,10 +764,10 @@ var search = function () {
 }();
 
 var archives = function () {
-  var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee8(ctx, next) {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee8(ctx, next) {
     var articles, arr, arr2, year, month, date, i, _i, total, archiveArticles, j;
 
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
@@ -730,9 +830,9 @@ var archives = function () {
 }();
 
 var upload = function () {
-  var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee9(ctx, next) {
+  var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee9(ctx, next) {
     var form, getImgUrl;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
           case 0:
@@ -781,13 +881,13 @@ var upload = function () {
 }();
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mongoose__);
 /* harmony export (binding) */ __webpack_require__.d(exports, "getTagsOrArticles", function() { return getTagsOrArticles; });
@@ -804,9 +904,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var Tag = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('Tag');
 var Article = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('Article');
 var getTagsOrArticles = function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
     var id, data;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -873,10 +973,10 @@ var getTagsOrArticles = function () {
 }();
 
 var postTag = function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
     var body, _body, name;
 
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -931,10 +1031,10 @@ var postTag = function () {
 }();
 
 var patchTag = function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(ctx, next) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(ctx, next) {
     var body, _body2, id;
 
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -991,9 +1091,9 @@ var patchTag = function () {
 }();
 
 var deleteTag = function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(ctx, next) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(ctx, next) {
     var id, body;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -1047,18 +1147,18 @@ var deleteTag = function () {
 }();
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mongoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_md5__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_md5__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_md5__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(exports, "login", function() { return login; });
@@ -1079,10 +1179,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var User = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('User');
 
 var login = function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
     var _ctx$request$body, username, password, user, secret, expiresIn, token;
 
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -1132,8 +1232,8 @@ var login = function () {
 }();
 
 var logout = function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2(ctx, next) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
@@ -1157,9 +1257,9 @@ var logout = function () {
 }();
 
 var getUserInfo = function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(ctx, next) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee3(ctx, next) {
     var avatarUrl, data;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -1202,9 +1302,9 @@ var getUserInfo = function () {
 }();
 
 var patchUserInfo = function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(ctx, next) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee4(ctx, next) {
     var body, oldPassword, newPassword, user;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -1302,15 +1402,15 @@ var patchUserInfo = function () {
 }();
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mongoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(2);
 
@@ -1325,13 +1425,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var User = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('User');
 
 /* harmony default export */ exports["a"] = (function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
     var token, decoded, username, userID, user;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             token = ctx.get('token');
+            // console.log('token: ', token)
 
             if (!token) {
               _context.next = 22;
@@ -1402,7 +1503,7 @@ var User = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('User');
 })();
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1461,15 +1562,15 @@ ArticleSchema.options.toJSON = {
 __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('Article', ArticleSchema);
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_mongoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_md5__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_md5__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_md5__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(2);
 
@@ -1482,17 +1583,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
-__webpack_require__(21);
 __webpack_require__(20);
-__webpack_require__(18);
+__webpack_require__(19);
+__webpack_require__(17);
 
 var User = __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.model('User');
 
 var mongoUrl = 'mongodb://' + __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */].mongodb.host + ':' + __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */].mongodb.port + '/' + __WEBPACK_IMPORTED_MODULE_3__config__["a" /* default */].mongodb.database;
 __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.Promise = global.Promise;
-__WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.connection.openUri(mongoUrl).once('open', _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
+__WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.connection.openUri(mongoUrl).once('open', _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee() {
   var userInfo, user;
-  return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+  return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -1531,7 +1632,7 @@ __WEBPACK_IMPORTED_MODULE_1_mongoose___default.a.connection.openUri(mongoUrl).on
 });
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1568,7 +1669,7 @@ TagSchema.options.toJSON = {
 __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('Tag', TagSchema);
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1614,78 +1715,155 @@ UserSchema.options.toJSON = {
 __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model('User', UserSchema);
 
 /***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+module.exports = function (config) {
+  return "User-agent: *\nAllow: /\nSitemap: " + config.siteUrl + "/sitemap.xml\n\nUser-agent: YisouSpider\nDisallow: /\nUser-agent: EasouSpider\nDisallow: /\nUser-agent: EtaoSpider\nDisallow: /\nUser-agent: MJ12bot\nDisallow: /";
+};
+
+/***/ },
 /* 22 */
 /***/ function(module, exports) {
 
-module.exports = require("formidable");
+var getUpdatedDate = function getUpdatedDate(date) {
+  return '<lastBuildDate>' + date + '</lastBuildDate>\r\n';
+};
+var tail = '</channel>\n</rss>';
+
+var getRssBodyFromBody = function getRssBodyFromBody(result, config) {
+  var head = '<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">\n  <channel>\n    <title>' + config.title + '</title>\n    <link>' + config.siteUrl + '</link>\n    <description>' + config.description + '</description>\n    <atom:link href="' + config.siteUrl + '/rss.xml" rel="self"/>\n    <language>zh-CN</language>\r\n';
+  var body = result.data.reduce(function (prev, curr) {
+    var date = new Date(curr.updatedAt).toUTCString();
+    var content = curr.content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+    prev += '    <item>\r\n';
+    prev += '      <title>' + curr.title + '</title>\r\n';
+    prev += '      <link>' + config.siteUrl + '/detail/' + curr.id + '</link>\r\n';
+    prev += '      <description>' + content + '</description>\r\n';
+    prev += '      <pubDate>' + date + '</pubDate>\r\n';
+    prev += '      <guid>' + config.siteUrl + '/detail/' + curr.id + '</guid>\r\n';
+    prev += '    </item>\r\n';
+    return prev;
+  }, '');
+  return head + getUpdatedDate(new Date().toUTCString()) + body + tail;
+};
+
+module.exports = {
+  getRssBodyFromBody: getRssBodyFromBody
+};
 
 /***/ },
 /* 23 */
 /***/ function(module, exports) {
 
-module.exports = require("fs");
+var head = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\r\n';
+
+var tail = '</urlset>';
+var getSitemapFromBody = function getSitemapFromBody(result, config) {
+  var res = result.data;
+  var body = res.reduce(function (prev, curr) {
+    prev += '  <url>\r\n';
+    prev += '    <loc>' + config.siteUrl + '/detail/' + curr.id + '</loc>\r\n';
+    prev += '    <lastmod>' + curr.updatedAt.slice(0, 10) + '</lastmod>\r\n';
+    prev += '    <priority>0.6</priority>\r\n';
+    prev += '  </url>\r\n';
+    return prev;
+  }, '');
+  return head + body + tail;
+};
+
+module.exports = {
+  getSitemapFromBody: getSitemapFromBody
+};
 
 /***/ },
 /* 24 */
 /***/ function(module, exports) {
 
-module.exports = require("os");
+module.exports = require("axios");
 
 /***/ },
 /* 25 */
 /***/ function(module, exports) {
 
-module.exports = require("regenerator-runtime");
+module.exports = require("formidable");
 
 /***/ },
 /* 26 */
+/***/ function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ },
+/* 27 */
+/***/ function(module, exports) {
+
+module.exports = require("os");
+
+/***/ },
+/* 28 */
+/***/ function(module, exports) {
+
+module.exports = require("path");
+
+/***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+module.exports = require("regenerator-runtime");
+
+/***/ },
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_koa__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_nuxt__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_path__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_koa_static__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_koa_static___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_koa_static__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_koa_bodyparser__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_koa_bodyparser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_koa_bodyparser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_koa_router__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_koa_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__koa_cors__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__koa_cors__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__routes__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_static__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_koa_static___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_koa_static__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_koa_bodyparser__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_koa_bodyparser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_koa_bodyparser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_koa_router__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_koa_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_koa_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__koa_cors__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__koa_cors__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__config__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__routes__ = __webpack_require__(7);
 
 
 var start = function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
+  var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee2() {
     var _this = this;
 
     var app, host, port, router, config, nuxt, builder;
-    return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+    return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             app = new __WEBPACK_IMPORTED_MODULE_1_koa___default.a();
-            host = process.env.HOST || __WEBPACK_IMPORTED_MODULE_8__config__["a" /* default */].app.host;
-            port = process.env.PORT || __WEBPACK_IMPORTED_MODULE_8__config__["a" /* default */].app.port;
-            router = new __WEBPACK_IMPORTED_MODULE_6_koa_router___default.a();
+            host = process.env.HOST || __WEBPACK_IMPORTED_MODULE_7__config__["a" /* default */].app.host;
+            port = process.env.PORT || __WEBPACK_IMPORTED_MODULE_7__config__["a" /* default */].app.port;
+            router = new __WEBPACK_IMPORTED_MODULE_5_koa_router___default.a();
 
+            /* app.get('/rss.xml', (ctx, next) => {
+              ctx.res.end('good')
+              next()
+             })
+            */
 
-            app.use(__WEBPACK_IMPORTED_MODULE_7__koa_cors___default()());
-            app.use(__WEBPACK_IMPORTED_MODULE_5_koa_bodyparser___default()());
-            app.use(__WEBPACK_IMPORTED_MODULE_4_koa_static___default()('.'));
-            router.use('', __WEBPACK_IMPORTED_MODULE_9__routes__["a" /* default */].routes());
+            app.use(__WEBPACK_IMPORTED_MODULE_6__koa_cors___default()());
+            app.use(__WEBPACK_IMPORTED_MODULE_4_koa_bodyparser___default()());
+            app.use(__WEBPACK_IMPORTED_MODULE_3_koa_static___default()('.'));
+            router.use('', __WEBPACK_IMPORTED_MODULE_8__routes__["a" /* default */].routes());
             app.use(router.routes()).use(router.allowedMethods());
 
             // Import and Set Nuxt.js options
-            config = __webpack_require__(7);
+            config = __webpack_require__(6);
 
             config.dev = !(app.env === 'production');
 
@@ -1706,8 +1884,8 @@ var start = function () {
           case 16:
 
             app.use(function () {
-              var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
-                return __WEBPACK_IMPORTED_MODULE_0_D_wmui_github_vueblog_koa_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+              var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.mark(function _callee(ctx, next) {
+                return __WEBPACK_IMPORTED_MODULE_0_D_GraduationProject_blog_NuxtBlog_V1_node_modules_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
@@ -1755,7 +1933,6 @@ var start = function () {
 }();
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 
 
 

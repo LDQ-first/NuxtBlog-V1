@@ -327,7 +327,7 @@ export default {
   }
   .blog-header {
     position: fixed;
-    z-index: 90;
+    z-index: 100;
     width: 100%;
     min-width: 320px;
     display: flex;

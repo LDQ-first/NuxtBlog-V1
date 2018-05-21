@@ -29,7 +29,7 @@
     "mongoose": "^5.0.1",
     "nuxt": "latest",
     "source-map-support": "^0.4.15",
-    "vue-blogeditor": "0.0.3"
+    "vue-blogeditor": "0.0.5"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
