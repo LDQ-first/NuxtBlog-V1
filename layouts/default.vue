@@ -220,6 +220,9 @@ export default {
     top: 0;
     left: 0;
     z-index: 1000;
+    @media (min-width: 800px) {
+      font-size: 24px;
+    }
     &.hidden {
       animation: hide 1s ease-in-out forwards;
     }
@@ -307,6 +310,9 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      @media (min-width: 800px) {
+        font-size: 22px;
+      }
       .header-title {
         margin-bottom: 10px;
       }
@@ -346,6 +352,9 @@ export default {
     .header-title {
       font-size: 18px;
       font-weight: 600;
+      @media (min-width: 800px) {
+        font-size: 24px;
+      }
       a:link,
       a:visited,
       a:hover,
@@ -359,6 +368,9 @@ export default {
       }
       li {
         display: inline-block;
+        @media (min-width: 800px) {
+          font-size: 24px;
+        }
         a {
           color: $header-color;
           padding: 0 15px;
